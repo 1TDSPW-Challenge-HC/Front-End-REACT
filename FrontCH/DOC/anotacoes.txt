@@ -1,0 +1,50 @@
+FrontEnd:
+TS = suporte somente a ts/js, mais utilizado pra guardar estrutura de dados mesmo como um json da vida
+TSX = suporte a TX, a estrutura bem parecida com HTML, vai devolver algo visual, diferente do TS que devolve dados e lógica.
+
+
+
+
+Exemplo de um tsx, que exporta uma rota:
+
+// arquivo: src/router.tsx
+// Note a extensão .tsx!
+
+import { createBrowserRouter } from "react-router-dom";
+import HomePage from "./pages/HomePage"; // Um componente .tsx
+import AboutPage from "./pages/AboutPage"; // Outro componente .tsx
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />, // <-- ISTO É JSX!
+  },
+  {
+    path: "/sobre",
+    element: <AboutPage />, // <-- ISTO TAMBÉM É JSX!
+  },
+]);
+
+passa o path e o router é o mapa que aponta qual componente vai trocar o componente atual, sem resetar a pagina
+
+
+o Main serve pra aplicar as funções vitais do REACT, inicializando o roteador, preparando os dados, buscando a div no index.html e injetando tudo lá dentro
+
+o APP é o local pra injeção de tags e interfaces, todas as classes vão herdar >diretamente< de APP a partir da Main com os pontos de routing, então tudo aqui vai ser aplicado pra todos os componentes, como cabeçalho e rodapé
+
+path indica a URL, sempre vai iniciar por uma "/", então um path somente "/" indica que a página padrão vai ser a dona esse path
+
+já uma página "/produtos" indica que aquele componente é acessado por aquele path especifico
+
+**MUITO IMPORTANTE**
+
+a função que o APP retorna é: uma DIV com uma classe css padrão pra facilitar implementação de CSS no site inteiro (no caso, tudo que for herdado de APP, mas nesse caso é todo o código)
+e após nós chamamos: Cabecalho como uma tag HTML mesmo, mas basicamente tá falando pra chamar o código do componente Cabecalho
+mesma coisa pra finalização com o rodapé
+no meio vamos usar Outlet page, aqui é um ÓTIMO exemplo pra estudar injeção de código (sim, pra vocês charlles e iago), basicamente eu to falando "nesse espaço entre as 2 tags já existentes, deixamos a chance de avisarmos o que vai ser carregado aqui"
+e esse Outlet vai mostrar o componente que ta sendo carregado atualmente, é como se fosse uma variavel que pode guardar um valor igual o <Cabecalho> ou <Rodape>
+
+fazemos essa injeção pra não precisarmos repetir o código sempre (pesquisem sobre DRY, Don't Repeat Yourself), então o cabecalho e rodapé sempre vão ser inicializados e a gente só coloca o que for de novo naquela "variavel" do OutletPages
+
+**FIM DA SEÇÃO IMPORTANTE**
+
