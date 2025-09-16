@@ -1,4 +1,4 @@
-export default function FAQ(){
+export default function Faq(){
 
     return(
         <main>
