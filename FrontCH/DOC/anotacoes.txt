@@ -48,3 +48,5 @@ fazemos essa injeção pra não precisarmos repetir o código sempre (pesquisem 
 
 **FIM DA SEÇÃO IMPORTANTE**
 
+
+Eventos são lançados com a mudança sempre que acontece, como onChange(React.ChangeEvent) sempre retorna o que mudou como váriavel, assim como onSubmit, é a partir daí que os dados são puxados

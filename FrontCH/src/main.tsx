@@ -5,7 +5,7 @@ import "./index.css"
 
 
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
-import Integrantes from './routes/Integrantes/index.tsx';
+import Integrantes from './routes/Integrantes/index.tsx'; 
 import Sobre from './routes/Sobre/index.tsx';
 import Home from './routes/Home/index.tsx';
 import Faq from './routes/Faq/index.tsx';
