@@ -78,8 +78,28 @@
     .button-base {
         @apply px-4 py-2 bg-[var(--background-header)] text-[var(--texto-claro)] rounded hover:opacity-90 transition-opacity;
     }
+
+    .form-group {
+        @apply flex flex-col gap-1 w-full;
+    }
+
+    .form-label {
+        @apply text-sm font-medium text-gray-700;
+    }
+
+    .error-message {
+        @apply text-sm text-red-500 mt-1;
+    }
+
+    .submissions-list {
+        @apply space-y-4 mt-4;
+    }
+
+    .submission-item {
+        @apply p-4 bg-white/10 rounded-lg shadow-sm;
+    }
   }
 
-    
+
 
 
