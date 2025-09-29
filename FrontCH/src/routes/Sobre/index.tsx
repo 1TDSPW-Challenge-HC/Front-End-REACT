@@ -7,10 +7,10 @@ interface FeatureProps {
 
 function Feature({ title, description }: FeatureProps) {
     return (
-        <>
+        <div className="feature-card">
             <h3 className="list-subtitle block-title">{title}</h3>
             <p className="list-paragraph">{description}</p>
-        </>
+        </div>
     );
 }
 
@@ -41,19 +41,34 @@ export default function Sobre() {
     return (
         <main>
             <section className="bg-blue">
-                <div className="block" id="enfermeira-digital">
-                    <h2 className="section-title block-title">O que é a enfermeira digital?</h2>
-                    <div className="img-wrapper">
-                        <img id="enfermeira-img" src="/assets/img/Placeholder2.png" alt="Placeholder2" />
+                <div className="block">
+                    <div className="intro-section">
+                        <h2 className="section-title block-title">O que é a enfermeira digital?</h2>
+                        <div className="img-wrapper mb-8">
+                            <img className="content-image" src="/assets/img/Placeholder2.png" alt="Placeholder2" />
+                        </div>
+                        <p className="text-lg text-center max-w-3xl mx-auto">
+                            Nossa enfermeira digital é uma inteligência artifical pronta para te auxiliar com 
+                            <span className="text-[var(--texto-destaque)]"> qualquer dificuldade que venha a encontrar </span> 
+                            relacionado ao seu atendimento virtual, visando substituir a necessidade de cuidadores 
+                            para a entrada da consulta
+                        </p>
                     </div>
-                    <p>Nossa enfermeira digital é uma inteligência artifical pronta para te auxiliar com qualquer dificuldade que venha a encontrar relacionado ao seu atendimento virtual, visando substituir a necessidade de cuidadores para a entrada da consulta</p>
                     
-                    <h2 className="block-title">Funcionalidades</h2>
-                    <p>Nossa enfermeira está sendo projetada para te ajudar de diversas formas e conseguir dar assistência para o maior número de casos possíveis, dando grande prioridade para acessibilidade, tendo funções como:</p>
-                    
-                    {features.map((feature, index) => (
-                        <Feature key={index} {...feature} />
-                    ))}
+                    <div className="features-section mt-16">
+                        <h2 className="block-title mb-8">Funcionalidades</h2>
+                        <p className="text-center mb-12">
+                            Nossa enfermeira está sendo projetada para te ajudar de diversas formas e conseguir 
+                            dar assistência para o maior número de casos possíveis, dando grande prioridade para 
+                            acessibilidade, tendo funções como:
+                        </p>
+                        
+                        <div className="features-grid">
+                            {features.map((feature, index) => (
+                                <Feature key={index} {...feature} />
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
