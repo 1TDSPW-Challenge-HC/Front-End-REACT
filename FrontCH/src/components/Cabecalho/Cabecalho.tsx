@@ -3,16 +3,26 @@ import { useNavigate } from 'react-router-dom';
 export default function Cabecalho(){
     const navigate = useNavigate();
 
+    const navItems = [
+        { path: '/', label: 'HOME' },
+        { path: '/integrantes', label: 'INTEGRANTES' },
+        { path: '/faq', label: 'FAQ' },
+        { path: '/contato', label: 'CONTATO' },
+        { path: '/sobre', label: 'SAIBA MAIS' }
+    ];
+
     return(
         <header>
-            <h1>Enfermeira Digital</h1>
+            <h1 className="text-2xl font-bold">Enfermeira Digital</h1>
             <nav>
                 <ul>
-                    <li><a onClick={() => navigate('/')} className="nav-link">HOME</a></li>
-                    <li><a onClick={() => navigate('/integrantes')} className="nav-link">INTEGRANTES</a></li>
-                    <li><a onClick={() => navigate('/faq')} className="nav-link">FAQ</a></li>
-                    <li><a onClick={() => navigate('/contato')} className="nav-link">CONTATO</a></li>
-                    <li><a onClick={() => navigate('/sobre')} className="nav-link">SAIBA MAIS</a></li>
+                    {navItems.map((item) => (
+                        <li key={item.path}>
+                            <a onClick={() => navigate(item.path)} className="nav-link">
+                                {item.label}
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </header>

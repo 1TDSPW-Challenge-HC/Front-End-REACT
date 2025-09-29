@@ -8,12 +8,13 @@ export default function App(){
 
   return(
     <div className="container">
-        <Cabecalho/>
-            <Suspense fallback={<div>Loading...</div>}>  
-              <OutletsPage></OutletsPage>
-            </Suspense>
-        <Rodape/>
+      <Cabecalho/>
+      <div className="flex-1 w-full">
+        <Suspense fallback={<div className="w-full h-full flex items-center justify-center">Loading...</div>}>  
+          <OutletsPage></OutletsPage>
+        </Suspense>
+      </div>
+      <Rodape/>
     </div>
-
   )
 }
