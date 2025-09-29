@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -66,5 +70,43 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply cursor-pointer px-4 py-2 text-gray-300 hover:text-white transition-colors;
+  }
+
+  .block {
+    @apply p-8 mb-8 bg-white/5 rounded-lg;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold mb-6 text-center;
+  }
+
+  .block-title {
+    @apply text-2xl font-semibold mb-4;
+  }
+
+  .highlight {
+    @apply text-blue-400 font-medium;
+  }
+
+  .list-paragraph {
+    @apply mb-4 text-gray-300;
+  }
+
+  .img-wrapper {
+    @apply w-full max-w-2xl mx-auto mb-8;
+  }
+
+  .container-integrantes {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+  }
+
+  .integrante {
+    @apply flex flex-col items-center p-4 bg-white/10 rounded-lg;
   }
 }
