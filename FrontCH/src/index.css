@@ -35,13 +35,15 @@
         @apply flex-1 w-screen flex flex-col items-center justify-center p-8;
     }
 
-    header {
-        @apply w-screen bg-[var(--background-header)] text-[var(--texto-claro)] flex justify-center;
-    }
+header {
+  @apply w-full bg-[var(--background-header)] text-[var(--texto-claro)] flex justify-center;
+}
 
     .header-content {
-        @apply w-full max-w-7xl flex items-center justify-between px-4 py-3 relative;
+    @apply w-full flex items-center justify-between px-6 py-3;
     }
+
+
 
     header h1 {
         @apply text-2xl font-bold pl-0;
