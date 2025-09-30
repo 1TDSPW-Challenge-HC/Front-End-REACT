@@ -48,7 +48,7 @@ export default function Sobre() {
                             <img className="content-image" src="/assets/img/Placeholder2.png" alt="Placeholder2" />
                         </div>
                         <p className="text-lg text-center max-w-3xl mx-auto">
-                            Nossa enfermeira digital é uma inteligência artifical pronta para te auxiliar com 
+                            A enfermeira digital é uma inteligência artifical pronta para te auxiliar com 
                             <span className="text-[var(--texto-destaque)]"> qualquer dificuldade que venha a encontrar </span> 
                             relacionado ao seu atendimento virtual, visando substituir a necessidade de cuidadores 
                             para a entrada da consulta

@@ -13,6 +13,7 @@ export default function Contato() {
         message: "",
     });
     const [errors, setErrors] = useState<FormErrors>({});
+    const [submissions, setSubmissions] = useState<typeof formData[]>([]);
 
     function validateForm(data: typeof formData): FormErrors {
         const errors: FormErrors = {};
@@ -47,8 +48,7 @@ export default function Contato() {
             return;
         }
 
-        // Handle successful submission
-        console.log('Form submitted:', formData);
+        setSubmissions(prev => [...prev, formData]);
         setFormData({ name: "", email: "", message: "" });
         setErrors({});
     }
@@ -102,6 +102,17 @@ export default function Contato() {
                         Enviar
                     </button>
                 </form>
+                {submissions.length > 0 && (
+                    <div className="submissions-list mt-8 w-full">
+                        <h3 className="block-title mb-4">Feedbacks recebidos</h3>
+                        {submissions.map((item, idx) => (
+                            <div key={idx} className="submission-item">
+                                <p><span className="font-bold">Nome:</span> {item.name}</p>
+                                <p><span className="font-bold">Mensagem:</span> {item.message}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </main>
     );
