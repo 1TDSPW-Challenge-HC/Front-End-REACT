@@ -25,14 +25,6 @@ export default function Home() {
                             Seja você um paciente recorrente ou alguém que está começando a usar serviços digitais de saúde, aqui você encontra apoio para tirar dúvidas, se organizar e garantir que sua experiência seja tranquila.
                         </p>
                     </div>
-                    {/* Conteúdo visual principal */}
-                    <div className="image-wrapper flex justify-center w-full mb-6">
-                        <img
-                            className="content-image"
-                            src="/assets/img/Placeholder2.png"
-                            alt="Placeholder2"
-                        />
-                    </div>
                     <p className="text-center mb-8 font-bold text-[var(--titulo-destaque)]">
                         Uma solução inteligente para auxiliar seu atendimento virtual.
                     </p>

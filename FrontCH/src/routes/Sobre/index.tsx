@@ -44,9 +44,6 @@ export default function Sobre() {
                 <div className="block">
                     <div className="intro-section">
                         <h2 className="section-title block-title">O que é a enfermeira digital?</h2>
-                        <div className="img-wrapper mb-8">
-                            <img className="content-image" src="/assets/img/Placeholder2.png" alt="Placeholder2" />
-                        </div>
                         <p className="text-lg text-center max-w-3xl mx-auto">
                             A enfermeira digital é uma inteligência artifical pronta para te auxiliar com 
                             <span className="text-[var(--texto-destaque)]"> qualquer dificuldade que venha a encontrar </span> 
