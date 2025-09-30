@@ -3,16 +3,19 @@ export default function Integrantes() {
         {
             nome: "Gabriel Fachin",
             turma: "1TDSPW",
+            RM: 561551,
             foto: "/assets/img/foto-gabriel.jpeg"
         },
         {
             nome: "Iago Dias",
             turma: "1TDSPW",
+            RM: 123456,
             foto: "/assets/img/foto-iago.jpeg"
         },
         {
             nome: "Fernando Charlles",
             turma: "1TDSPW",
+            RM: 123456,
             foto: "/assets/img/foto-charlles.jpeg"
         }
     ];
@@ -24,14 +27,15 @@ export default function Integrantes() {
                     <h2 className="section-title block-title">Integrantes</h2>
                     <div className="w-full flex flex-wrap justify-center gap-8 mt-8">
                         {integrantes.map((integrante, idx) => (
-                            <div key={idx} className="flex flex-col items-center bg-white/10 rounded-lg p-4 shadow-md max-w-xs">
+                            <div key={idx} className="flex flex-col items-center bg-[var(--background-section)] rounded-lg p-6 shadow-lg max-w-sm border border-[var(--detalhe-complementar)]/20 hover:border-[var(--detalhe-complementar)]/40 transition-colors">
                                 <img
                                     src={integrante.foto}
                                     alt={`Foto de ${integrante.nome}`}
-                                    className="rounded-full w-32 h-32 object-cover mb-4 shadow"
+                                    className="rounded-full w-40 h-40 object-cover mb-6 shadow-md border-2 border-[var(--detalhe-complementar)]"
                                 />
-                                <h4 className="text-lg font-bold mb-1">{integrante.nome}</h4>
-                                <p className="text-sm text-gray-700">{integrante.turma}</p>
+                                <h4 className="text-xl font-bold mb-2 text-[var(--titulo-destaque)]">{integrante.nome}</h4>
+                                <p className="text-base text-[var(--texto-destaque)] mb-1">{integrante.turma}</p>
+                                <p className="text-base text-[var(--texto-destaque)]">RM: {integrante.RM}</p>
                             </div>
                         ))}
                     </div>
