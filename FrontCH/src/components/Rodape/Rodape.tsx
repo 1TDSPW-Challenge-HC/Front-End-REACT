@@ -1,8 +1,8 @@
-export default function Rodape(){
-    return(
+export default function Rodape() {
+    return (
         <footer>
             <div className="footer-content">
-                RODAPÉ
+                © 2025 Enfermeira Digital™
             </div>
         </footer>
     )

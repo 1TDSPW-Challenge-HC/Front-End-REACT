@@ -3,12 +3,12 @@ export default function Integrantes() {
         {
             nome: "Gabriel Fachin",
             turma: "1TDSPW",
-            foto: "/assets/img/foto-gabriel.jpg"
+            foto: "/assets/img/foto-gabriel.jpeg"
         },
         {
             nome: "Iago Dias",
             turma: "1TDSPW",
-            foto: "/assets/img/foto-levi.jpeg"
+            foto: "/assets/img/foto-iago.jpeg"
         },
         {
             nome: "Fernando Charlles",
