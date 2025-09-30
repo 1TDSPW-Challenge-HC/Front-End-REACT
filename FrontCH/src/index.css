@@ -22,33 +22,48 @@
     }
 
     body {
-        @apply w-screen min-h-screen overflow-x-hidden;
+        @apply min-h-screen w-full bg-[var(--background)] overflow-x-hidden flex flex-col items-center;
     }
 }
 
 @layer components {
     .container {
-        @apply w-full min-h-screen flex flex-col;
+        @apply min-h-screen w-screen flex flex-col;
     }
 
     .main-content {
-        @apply flex-1 w-full p-4;
+        @apply flex-1 w-screen flex flex-col items-center justify-center p-8;
     }
 
     header {
-        @apply w-full flex flex-row flex-wrap items-center justify-between p-4 bg-[var(--background-header)] text-[var(--texto-claro)];
+        @apply w-screen bg-[var(--background-header)] text-[var(--texto-claro)] flex justify-center;
+    }
+
+    .header-content {
+        @apply w-full max-w-7xl flex items-center justify-between px-4 py-3 relative;
+    }
+
+    header h1 {
+        @apply text-2xl font-bold pl-0;
+    }
+
+    header nav {
+        @apply flex items-center justify-end flex-1;
     }
 
     header nav ul {
-        @apply flex gap-[50px] p-[10px] list-none;
+        @apply flex flex-wrap items-center gap-4 sm:gap-8;
     }
 
     .nav-link {
-        @apply text-[var(--texto-claro)] font-bold hover:text-[var(--texto-escuro)] cursor-pointer;
+        @apply text-[var(--texto-claro)] font-bold hover:text-[var(--texto-escuro)] cursor-pointer 
+               px-2 py-1 transition-colors whitespace-nowrap text-sm sm:text-base;
     }
 
     .block {
-        @apply w-full max-w-7xl mx-auto p-8 bg-[var(--background-section)] rounded-lg shadow-lg;
+        @apply w-full max-w-7xl mx-auto min-h-[600px] p-8 
+               bg-[var(--background-section)] rounded-lg shadow-lg 
+               flex flex-col items-center;
     }
 
     .block-title {
@@ -64,7 +79,11 @@
     }
 
     footer {
-        @apply w-full p-4 bg-[var(--background-footer)] text-center;
+        @apply w-screen py-3 bg-[var(--background-footer)];
+    }
+
+    .footer-content {
+        @apply w-full max-w-7xl mx-auto text-center px-4;
     }
 
     .form-container {

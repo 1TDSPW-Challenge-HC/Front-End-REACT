@@ -13,18 +13,23 @@ export default function Cabecalho(){
 
     return(
         <header>
-            <h1 className="text-2xl font-bold">Enfermeira Digital</h1>
-            <nav>
-                <ul>
-                    {navItems.map((item) => (
-                        <li key={item.path}>
-                            <a onClick={() => navigate(item.path)} className="nav-link">
-                                {item.label}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
+            <div className="header-content">
+                <h1>Enfermeira Digital</h1>
+                <nav>
+                    <ul>
+                        {navItems.map((item) => (
+                            <li key={item.path}>
+                                <button 
+                                    onClick={() => navigate(item.path)} 
+                                    className="nav-link bg-transparent border-none"
+                                >
+                                    {item.label}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </div>
         </header>
     )
 }

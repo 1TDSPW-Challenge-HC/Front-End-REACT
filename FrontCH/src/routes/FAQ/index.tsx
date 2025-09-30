@@ -27,21 +27,25 @@ export default function Faq() {
     ];
 
     return (
-        <main>
-            <div className="block" id="FAQ">
-                <h2 className="section-title block-title">FAQ</h2>
-                {faqItems.map((item, index) => (
-                    <div key={index}>
-                        <h3 className="list-subtitle block-title faq-title" onClick={() => setOpenItem(index === openItem ? null : index)}>
-                            <span className="toggle-icon">{openItem === index ? '-' : '+'}</span>
-                            {item.question}
-                        </h3>
-                        {openItem === index && (
-                            <p className="list-paragraph faq-answer">{item.answer}</p>
-                        )}
+        <main className="w-full flex-1 flex items-center justify-center">
+            <section className="w-full flex items-center justify-center">
+                <div className="block" id="FAQ">
+                    <h2 className="section-title block-title">FAQ</h2>
+                    <div className="w-full flex flex-col gap-4">
+                        {faqItems.map((item, index) => (
+                            <div key={index}>
+                                <h3 className="list-subtitle block-title faq-title" onClick={() => setOpenItem(index === openItem ? null : index)}>
+                                    <span className="toggle-icon">{openItem === index ? '-' : '+'}</span>
+                                    {item.question}
+                                </h3>
+                                {openItem === index && (
+                                    <p className="list-paragraph faq-answer">{item.answer}</p>
+                                )}
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
+                </div>
+            </section>
         </main>
     );
 }

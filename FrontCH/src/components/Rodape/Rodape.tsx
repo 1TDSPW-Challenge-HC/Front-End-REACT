@@ -1,6 +1,9 @@
 export default function Rodape(){
-
     return(
-        <footer>RODAPÉ</footer>
+        <footer>
+            <div className="footer-content">
+                RODAPÉ
+            </div>
+        </footer>
     )
 }
