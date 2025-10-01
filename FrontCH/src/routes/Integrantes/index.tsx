@@ -9,13 +9,13 @@ export default function Integrantes() {
         {
             nome: "Iago Dias",
             turma: "1TDSPW",
-            RM: 123456,
+            RM: 565708,
             foto: "/assets/img/foto-iago.jpeg"
         },
         {
             nome: "Fernando Charlles",
             turma: "1TDSPW",
-            RM: 123456,
+            RM: 566482,
             foto: "/assets/img/foto-charlles.jpeg"
         }
     ];
