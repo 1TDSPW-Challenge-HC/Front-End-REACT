@@ -1,3 +1,4 @@
+// FrontCH/src/App.tsx
 import Cabecalho from "./components/Cabecalho/Cabecalho"
 import Rodape from "./components/Rodape/Rodape"
 import { lazy, Suspense } from "react";
@@ -15,7 +16,7 @@ export default function App() {
         <Suspense
           fallback={
             <div className="w-full h-full flex items-center justify-center">
-              Loading...
+              Carregando...
             </div>
           }
         >
