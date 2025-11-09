@@ -14,7 +14,6 @@ Criar uma inteligência artificial assistente que acompanha o paciente durante t
 🔊 Acessibilidade com TTS (Text-to-Speech) e STT (Speech-to-Text)
 🧭 Guia passo a passo para entrar na consulta
 
-
 ✨ Funcionalidades
 🏠 Página Inicial
 
@@ -72,39 +71,6 @@ Backend Integration
 
 API REST - Comunicação com backend Java/Quarkus
 Fetch API - Requisições HTTP nativas
-
-
-📁 Estrutura do Projeto
-FrontCH/
-├── public/
-│   └── assets/
-│       └── img/              # Imagens dos integrantes
-├── src/
-│   ├── components/
-│   │   ├── Cabecalho/       # Header com navegação
-│   │   └── Rodape/          # Footer
-│   ├── routes/              # Páginas da aplicação
-│   │   ├── Home/
-│   │   ├── Login/
-│   │   ├── Cadastro/
-│   │   ├── Perfil/
-│   │   ├── Contato/
-│   │   ├── Faq/
-│   │   ├── Integrantes/
-│   │   ├── Sobre/
-│   │   └── Error/
-│   ├── services/
-│   │   └── api.ts           # Camada de comunicação com API
-│   ├── types/
-│   │   └── auth.ts          # Tipos TypeScript
-│   ├── App.tsx              # Componente raiz
-│   ├── main.tsx             # Entry point
-│   └── index.css            # Estilos globais
-├── .gitignore
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
 
 🚀 Como Executar o Projeto
 Pré-requisitos
