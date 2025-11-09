@@ -40,6 +40,16 @@ export default function Perfil() {
     return value;
   };
 
+  // Formata data para exibição (dd/mm/aaaa)
+  const formatDateForDisplay = (value?: string) => {
+    if (!value) return "Não informado";
+    const normalized = normalizeDate(value);
+    if (!normalized || normalized.length < 10) return value;
+    
+    const [year, month, day] = normalized.split("-");
+    return `${day}/${month}/${year}`;
+  };
+
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
@@ -58,15 +68,26 @@ export default function Perfil() {
     if (!user?.idUsuario) return;
 
     try {
-      // enviar o payload completo (merge) para evitar que o backend rejeite por campos faltando
-      const payload = { ...user, ...data, dtNascimento: normalizeDate(data.dtNascimento) } as any;
-      const updatedUser = await api.atualizar(Number(user.idUsuario), payload);
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      setUser(updatedUser);
-      setMessage("Dados atualizados com sucesso!");
-      setIsEditing(false);
+      const payload = {
+        nome: data.nome,
+        email: user.email, // mantém o email original
+        senha: user.senha, // mantém a senha original
+        dtNascimento: data.dtNascimento
+      };
       
-      setTimeout(() => setMessage(""), 3000);
+      const updatedUser = await api.atualizar(Number(user.idUsuario), payload);
+      
+      if (updatedUser) {
+        const userWithId = { ...updatedUser, idUsuario: user.idUsuario };
+        localStorage.setItem("user", JSON.stringify(userWithId));
+        setUser(userWithId);
+        setMessage("Dados atualizados com sucesso!");
+        setIsEditing(false);
+        
+        setTimeout(() => setMessage(""), 3000);
+      } else {
+        setMessage("Erro ao atualizar dados.");
+      }
     } catch (error) {
       setMessage("Erro ao atualizar dados.");
     }
@@ -76,12 +97,18 @@ export default function Perfil() {
     if (!user?.idUsuario) return;
 
     try {
-      await api.deletar(Number(user.idUsuario));
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      navigate("/login");
+      const success = await api.deletar(Number(user.idUsuario));
+      if (success) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        navigate("/login");
+      } else {
+        setMessage("Erro ao deletar conta.");
+        setShowDeleteConfirm(false);
+      }
     } catch (error) {
       setMessage("Erro ao deletar conta.");
+      setShowDeleteConfirm(false);
     }
   };
 
@@ -89,6 +116,7 @@ export default function Perfil() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     navigate("/login");
+    window.location.reload();
   };
 
   if (!user) return null;
@@ -145,19 +173,24 @@ export default function Perfil() {
             <label htmlFor="dtNascimento" className="text-sm font-medium text-gray-700">
               Data de nascimento
             </label>
-            <input
-              type="date"
-              id="dtNascimento"
-              disabled={!isEditing}
-              className={`w-full p-2 border border-[var(--detalhe-complementar)] rounded ${
-                !isEditing ? "bg-gray-50" : ""
-              }`}
-              {...register("dtNascimento", {
-                required: "Data de nascimento é obrigatória"
-              })}
-            />
-            {errors.dtNascimento && (
-              <small className="text-sm text-red-500">{errors.dtNascimento.message}</small>
+            {isEditing ? (
+              <>
+                <input
+                  type="date"
+                  id="dtNascimento"
+                  className="w-full p-2 border border-[var(--detalhe-complementar)] rounded"
+                  {...register("dtNascimento", {
+                    required: "Data de nascimento é obrigatória"
+                  })}
+                />
+                {errors.dtNascimento && (
+                  <small className="text-sm text-red-500">{errors.dtNascimento.message}</small>
+                )}
+              </>
+            ) : (
+              <div className="w-full p-2 border border-gray-300 rounded bg-gray-50">
+                {formatDateForDisplay(user.dtNascimento)}
+              </div>
             )}
           </div>
 

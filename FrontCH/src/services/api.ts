@@ -1,6 +1,6 @@
 import type { User, LoginData, CadastroData } from '../types/auth';
 
-// Aqui você coloca a URL que o Render te deu
+// URL da API hospedada no Render
 const API_URL = 'https://java-jdbc-zry5.onrender.com';
 
 export const api = {
@@ -54,28 +54,16 @@ export const api = {
     }
   },
 
-  // PUT /usuario - Atualizar usuário por email
-  async atualizar(email: string, data: Partial<User>) {
+  // PUT /usuario/{id} - Atualizar usuário por ID
+  async atualizar(idUsuario: number, data: Partial<User>) {
     try {
-      // Busca todos os usuários primeiro
-      const usuarios = await this.listar();
-      const userIndex = usuarios.findIndex((u: any) => u.email === email);
-      
-      if (userIndex === -1) {
-        console.error('Usuário não encontrado para atualizar');
-        return null;
-      }
-
-      const response = await fetch(`${API_URL}/usuario`, {
+      const response = await fetch(`${API_URL}/usuario/${idUsuario}`, {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          ...data,
-          email: email // garante que o email está presente
-        })
+        body: JSON.stringify(data)
       });
 
       if (!response.ok) {
@@ -83,9 +71,9 @@ export const api = {
         return null;
       }
 
-      // Busca o usuário atualizado na lista atualizada
-      const updatedUsers = await this.listar();
-      return updatedUsers.find((u: any) => u.email === email) || null;
+      // Busca o usuário atualizado
+      const updatedUser = await this.buscarPorId(idUsuario);
+      return updatedUser;
 
     } catch (error) {
       console.error('Erro ao atualizar:', error);
@@ -93,15 +81,14 @@ export const api = {
     }
   },
 
-  // DELETE /usuario - Deletar usuário por email
-  async deletar(email: string) {
+  // DELETE /usuario/{id} - Deletar usuário por ID
+  async deletar(idUsuario: number) {
     try {
-      const response = await fetch(`${API_URL}/usuario`, {
+      const response = await fetch(`${API_URL}/usuario/${idUsuario}`, {
         method: 'DELETE',
         headers: { 
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email })
+        }
       });
 
       if (!response.ok) {
@@ -113,6 +100,22 @@ export const api = {
     } catch (error) {
       console.error('Erro ao deletar:', error);
       return false;
+    }
+  },
+
+  // GET /usuario/{id} - Buscar usuário por ID
+  async buscarPorId(idUsuario: number) {
+    try {
+      const response = await fetch(`${API_URL}/usuario/${idUsuario}`);
+
+      if (!response.ok) {
+        throw new Error('Erro ao buscar usuário');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Erro ao buscar usuário:', error);
+      throw error;
     }
   },
 

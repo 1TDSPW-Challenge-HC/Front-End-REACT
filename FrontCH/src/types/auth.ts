@@ -1,4 +1,3 @@
-// FrontCH/src/types/auth.ts
 
 export type User = {
   idUsuario?: number;
