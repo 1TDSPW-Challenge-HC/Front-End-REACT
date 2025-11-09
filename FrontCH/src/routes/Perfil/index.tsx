@@ -1,4 +1,3 @@
-// FrontCH/src/routes/Perfil/index.tsx
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -24,6 +23,23 @@ export default function Perfil() {
     formState: { errors },
   } = useForm<PerfilForm>();
 
+  // Normaliza diferentes formatos de data para o formato aceito pelo input[type=date] (yyyy-mm-dd)
+  const normalizeDate = (value?: string) => {
+    if (!value) return "";
+    // se estiver no formato dd/mm/aaaa -> converte
+    if (value.includes("/")) {
+      const parts = value.split("/");
+      if (parts.length === 3) {
+        const [d, m, y] = parts;
+        return `${y.padStart(4, "0")}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
+      }
+    }
+    // se for ISO ou tiver T -> pega os 10 primeiros caracteres (yyyy-mm-dd)
+    if (value.includes("T")) return value.slice(0, 10);
+    if (value.length >= 10) return value.slice(0, 10);
+    return value;
+  };
+
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
@@ -31,7 +47,7 @@ export default function Perfil() {
       setUser(parsedUser);
       reset({
         nome: parsedUser.nome,
-        dtNascimento: parsedUser.dtNascimento
+        dtNascimento: normalizeDate(parsedUser.dtNascimento)
       });
     } else {
       navigate("/login");
@@ -39,10 +55,12 @@ export default function Perfil() {
   }, [navigate, reset]);
 
   const onSubmit: SubmitHandler<PerfilForm> = async (data) => {
-    if (!user?.id) return;
+    if (!user?.idUsuario) return;
 
     try {
-      const updatedUser = await api.atualizar(user.id, data);
+      // enviar o payload completo (merge) para evitar que o backend rejeite por campos faltando
+      const payload = { ...user, ...data, dtNascimento: normalizeDate(data.dtNascimento) } as any;
+      const updatedUser = await api.atualizar(Number(user.idUsuario), payload);
       localStorage.setItem("user", JSON.stringify(updatedUser));
       setUser(updatedUser);
       setMessage("Dados atualizados com sucesso!");
@@ -55,10 +73,10 @@ export default function Perfil() {
   };
 
   const handleDelete = async () => {
-    if (!user?.id) return;
+    if (!user?.idUsuario) return;
 
     try {
-      await api.deletar(user.id);
+      await api.deletar(Number(user.idUsuario));
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       navigate("/login");
@@ -156,7 +174,7 @@ export default function Perfil() {
                   type="button"
                   onClick={() => {
                     setIsEditing(false);
-                    reset({ nome: user.nome, dtNascimento: user.dtNascimento });
+                    reset({ nome: user.nome, dtNascimento: normalizeDate(user.dtNascimento) });
                   }}
                   className="flex-1 px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
                 >

@@ -1,7 +1,7 @@
 // FrontCH/src/types/auth.ts
 
 export type User = {
-  id?: number;
+  idUsuario?: number;
   nome: string;
   email: string;
   senha?: string;
